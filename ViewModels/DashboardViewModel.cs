@@ -12,6 +12,7 @@ namespace LEMORA.ViewModels
     {
         private readonly ClothingService _clothingService = new();
         private readonly OutfitService _outfitService = new();
+        private readonly OutfitPlanService _planService = new();
         private int _totalGarments;
         private int _totalCategories;
         private bool _isLoading;
@@ -40,7 +41,30 @@ namespace LEMORA.ViewModels
             private set => SetProperty(ref _savedOutfitsCount, value);
         }
 
-        public int PlannedOutfitsCount => 0;
+        private int _plannedOutfitsCount;
+        public int PlannedOutfitsCount
+        {
+            get => _plannedOutfitsCount;
+            private set => SetProperty(ref _plannedOutfitsCount, value);
+        }
+
+        private OutfitPlan? _todayPlan;
+        public OutfitPlan? TodayPlan
+        {
+            get => _todayPlan;
+            private set
+            {
+                if (SetProperty(ref _todayPlan, value))
+                {
+                    OnPropertyChanged(nameof(HasTodayPlan));
+                    OnPropertyChanged(nameof(HasNoTodayPlan));
+                }
+            }
+        }
+
+        public bool HasTodayPlan => TodayPlan is not null;
+        public bool HasNoTodayPlan => !HasTodayPlan;
+        public ObservableCollection<OutfitItem> TodayLookItems { get; } = new();
 
         public bool IsWardrobeEmpty => TotalGarments == 0;
         public bool HasRecentItems => RecentItems.Count > 0;
@@ -107,6 +131,14 @@ namespace LEMORA.ViewModels
                 TotalGarments = items.Count;
                 TotalCategories = groups.Count;
                 SavedOutfitsCount = await _outfitService.GetCountAsync();
+                PlannedOutfitsCount = await _planService.GetUpcomingCountAsync();
+                TodayPlan = await _planService.GetForDateAsync(DateTime.Today);
+                TodayLookItems.Clear();
+                if (TodayPlan is not null)
+                {
+                    foreach (var item in TodayPlan.Outfit.Items.OrderBy(x => x.Slot))
+                        TodayLookItems.Add(item);
+                }
                 OnPropertyChanged(nameof(HasRecentItems));
                 OnPropertyChanged(nameof(HasCategories));
                 OnPropertyChanged(nameof(HasNoCategories));

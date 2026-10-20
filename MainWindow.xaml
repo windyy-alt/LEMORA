@@ -62,7 +62,8 @@
                             Click="OutfitStudio_Click"
                             Style="{StaticResource SidebarButtonStyle}"
                             Background="Transparent" Margin="0,0,0,5"/>
-                    <Button Content="Outfit Planner"
+                    <Button x:Name="OutfitPlannerButton" Content="Outfit Planner"
+                            Click="OutfitPlanner_Click"
                             Style="{StaticResource SidebarButtonStyle}"
                             Background="Transparent" Margin="0,0,0,5"/>
                     <Button Content="Style Suggestions"
@@ -215,19 +216,51 @@
                                            Style="{StaticResource MutedTextStyle}"
                                            Margin="0,5,0,16"/>
                                 <Border Height="150" Background="#F3F1E7"
-                                        CornerRadius="10" Padding="15">
+                                        CornerRadius="10" Padding="15"
+                                        Visibility="{Binding HasNoTodayPlan, Converter={StaticResource BoolToVisibility}}">
                                     <StackPanel VerticalAlignment="Center"
                                                 HorizontalAlignment="Center">
                                         <TextBlock Text="No outfit scheduled for today"
                                                    FontFamily="Georgia" FontSize="18"
                                                    Foreground="{DynamicResource TextBrush}"
                                                    HorizontalAlignment="Center"/>
-                                        <TextBlock Text="Your planned look will appear here."
+                                        <TextBlock Text="Open Outfit Planner to plan your look."
                                                    Style="{StaticResource MutedTextStyle}"
-                                                   HorizontalAlignment="Center"
-                                                   Margin="0,8,0,0"/>
+                                                   HorizontalAlignment="Center" Margin="0,8,0,0"/>
                                     </StackPanel>
                                 </Border>
+                                <StackPanel Visibility="{Binding HasTodayPlan, Converter={StaticResource BoolToVisibility}}">
+                                    <TextBlock Text="{Binding TodayPlan.Activity}"
+                                               FontSize="12" Foreground="{DynamicResource PrimaryBrush}"
+                                               FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding TodayPlan.Outfit.Name}"
+                                               FontFamily="Georgia" FontSize="18"
+                                               FontWeight="Bold" Margin="0,4,0,10"/>
+                                    <ItemsControl ItemsSource="{Binding TodayLookItems}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <UniformGrid Columns="5"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Margin="0,0,8,0" Background="#F5F4EF"
+                                                        CornerRadius="8" Padding="5">
+                                                    <StackPanel>
+                                                        <Border Height="85" Background="#EDECDB"
+                                                                CornerRadius="6" ClipToBounds="True">
+                                                            <Image Source="{Binding ClothingItem.ImagePath}"
+                                                                   Stretch="Uniform"/>
+                                                        </Border>
+                                                        <TextBlock Text="{Binding ClothingItem.Name}"
+                                                                   FontSize="10" TextTrimming="CharacterEllipsis"
+                                                                   Margin="0,5,0,0"/>
+                                                    </StackPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
                             </StackPanel>
                         </Border>
 
@@ -331,6 +364,8 @@
                                 Visibility="Collapsed"/>
             <views:OutfitStudioView x:Name="OutfitStudioPanel" Grid.Row="1"
                                     Visibility="Collapsed"/>
+            <views:OutfitPlannerView x:Name="OutfitPlannerPanel" Grid.Row="1"
+                                     Visibility="Collapsed"/>
         </Grid>
     </Grid>
 </Window>

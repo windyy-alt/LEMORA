@@ -7,19 +7,17 @@ namespace LEMORA.Data
 {
     public class LemoraDbContext : DbContext
     {
-        public DbSet<ClothingItem> ClothingItems { get; set; }
+        public DbSet<ClothingItem> ClothingItems { get; set; } = null!;
         public DbSet<Outfit> Outfits => Set<Outfit>();
         public DbSet<OutfitItem> OutfitItems => Set<OutfitItem>();
+        public DbSet<OutfitPlan> OutfitPlans => Set<OutfitPlan>();
 
         public static string DatabasePath =>
             Path.Combine(
-                Environment.GetFolderPath(
-                    Environment.SpecialFolder.LocalApplicationData),
-                "LEMORA",
-                "lemora.db");
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                "LEMORA", "lemora.db");
 
-        protected override void OnConfiguring(
-            DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
@@ -49,6 +47,16 @@ namespace LEMORA.Data
                 .WithMany()
                 .HasForeignKey(item => item.ClothingItemId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<OutfitPlan>()
+                .HasIndex(plan => plan.Date)
+                .IsUnique();
+
+            modelBuilder.Entity<OutfitPlan>()
+                .HasOne(plan => plan.Outfit)
+                .WithMany()
+                .HasForeignKey(plan => plan.OutfitId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

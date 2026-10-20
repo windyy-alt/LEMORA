@@ -124,6 +124,37 @@ namespace LEMORA.Migrations
                     b.ToTable("OutfitItems");
                 });
 
+            modelBuilder.Entity("LEMORA.Models.OutfitPlan", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Activity")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Notes")
+                        .HasMaxLength(300)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("OutfitId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Date")
+                        .IsUnique();
+
+                    b.HasIndex("OutfitId");
+
+                    b.ToTable("OutfitPlans");
+                });
+
             modelBuilder.Entity("LEMORA.Models.OutfitItem", b =>
                 {
                     b.HasOne("LEMORA.Models.ClothingItem", "ClothingItem")
@@ -139,6 +170,17 @@ namespace LEMORA.Migrations
                         .IsRequired();
 
                     b.Navigation("ClothingItem");
+
+                    b.Navigation("Outfit");
+                });
+
+            modelBuilder.Entity("LEMORA.Models.OutfitPlan", b =>
+                {
+                    b.HasOne("LEMORA.Models.Outfit", "Outfit")
+                        .WithMany()
+                        .HasForeignKey("OutfitId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Outfit");
                 });

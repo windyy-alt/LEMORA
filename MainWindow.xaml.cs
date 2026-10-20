@@ -43,6 +43,8 @@ namespace LEMORA
             DashboardPanel.Visibility = Visibility.Visible;
             ClosetPanel.Visibility = Visibility.Collapsed;
             OutfitStudioPanel.Visibility = Visibility.Collapsed;
+            OutfitPlannerPanel.Visibility = Visibility.Collapsed;
+            OutfitPlannerButton.Background = Brushes.Transparent;
             DashboardButton.Background = (Brush)FindResource("PrimaryBrush");
             MyClosetButton.Background = Brushes.Transparent;
             OutfitStudioButton.Background = Brushes.Transparent;
@@ -54,6 +56,8 @@ namespace LEMORA
             DashboardPanel.Visibility = Visibility.Collapsed;
             ClosetPanel.Visibility = Visibility.Visible;
             OutfitStudioPanel.Visibility = Visibility.Collapsed;
+            OutfitPlannerPanel.Visibility = Visibility.Collapsed;
+            OutfitPlannerButton.Background = Brushes.Transparent;
             DashboardButton.Background = Brushes.Transparent;
             OutfitStudioButton.Background = Brushes.Transparent;
             MyClosetButton.Background = (Brush)FindResource("PrimaryBrush");
@@ -64,6 +68,8 @@ namespace LEMORA
             DashboardPanel.Visibility = Visibility.Collapsed;
             ClosetPanel.Visibility = Visibility.Collapsed;
             OutfitStudioPanel.Visibility = Visibility.Visible;
+            OutfitPlannerPanel.Visibility = Visibility.Collapsed;
+            OutfitPlannerButton.Background = Brushes.Transparent;
             DashboardButton.Background = Brushes.Transparent;
             MyClosetButton.Background = Brushes.Transparent;
             OutfitStudioButton.Background = (Brush)FindResource("PrimaryBrush");
@@ -79,6 +85,21 @@ namespace LEMORA
         {
             await ShowOutfitStudioAsync();
             OutfitStudioPanel.BeginNewOutfit();
+        }
+
+        private async void OutfitPlanner_Click(object sender, RoutedEventArgs e)
+        {
+            DashboardPanel.Visibility = Visibility.Collapsed;
+            ClosetPanel.Visibility = Visibility.Collapsed;
+            OutfitStudioPanel.Visibility = Visibility.Collapsed;
+            OutfitPlannerPanel.Visibility = Visibility.Visible;
+
+            DashboardButton.Background = Brushes.Transparent;
+            MyClosetButton.Background = Brushes.Transparent;
+            OutfitStudioButton.Background = Brushes.Transparent;
+            OutfitPlannerButton.Background = (Brush)FindResource("PrimaryBrush");
+
+            await OutfitPlannerPanel.RefreshAsync();
         }
 
         private void AddClothing_Click(object sender, RoutedEventArgs e)

@@ -135,6 +135,11 @@ namespace LEMORA.Services
             if (outfit is null)
                 throw new InvalidOperationException("The selected outfit no longer exists.");
 
+            bool hasSchedules = await db.OutfitPlans.AnyAsync(plan => plan.OutfitId == outfitId);
+            if (hasSchedules)
+                throw new InvalidOperationException(
+                    "This outfit is scheduled in Outfit Planner. Remove its plans before deleting it.");
+
             db.Outfits.Remove(outfit);
             await db.SaveChangesAsync();
         }
