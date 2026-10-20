@@ -1,0 +1,288 @@
+﻿<Application x:Class="LEMORA.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:LEMORA"
+             StartupUri="MainWindow.xaml">
+
+    <Application.Resources>
+
+  
+        <!-- LEMORA DESIGN SYSTEM                  -->
+
+        <!-- COLOR PALETTE -->
+        <Color x:Key="VerandaBlue">#6BB1AD</Color>
+        <Color x:Key="SkyCloud">#A7BCBD</Color>
+        <Color x:Key="Lychee">#EDECDB</Color>
+        <Color x:Key="Melon">#E5A9A9</Color>
+        <Color x:Key="CupidPink">#E6748E</Color>
+
+        <!-- NEUTRAL COLORS -->
+        <Color x:Key="Charcoal">#243238</Color>
+        <Color x:Key="MutedGray">#738184</Color>
+        <Color x:Key="SoftWhite">#FFFFFF</Color>
+        <Color x:Key="SoftBorder">#E4E7DF</Color>
+
+        <!-- BRUSH RESOURCES -->
+        <SolidColorBrush x:Key="PrimaryBrush"
+                         Color="{StaticResource VerandaBlue}"/>
+
+        <SolidColorBrush x:Key="SecondaryBrush"
+                         Color="{StaticResource SkyCloud}"/>
+
+        <SolidColorBrush x:Key="BackgroundBrush"
+                         Color="{StaticResource Lychee}"/>
+
+        <SolidColorBrush x:Key="MelonBrush"
+                         Color="{StaticResource Melon}"/>
+
+        <SolidColorBrush x:Key="AccentBrush"
+                         Color="{StaticResource CupidPink}"/>
+
+        <SolidColorBrush x:Key="TextBrush"
+                         Color="{StaticResource Charcoal}"/>
+
+        <SolidColorBrush x:Key="MutedTextBrush"
+                         Color="{StaticResource MutedGray}"/>
+
+        <SolidColorBrush x:Key="CardBrush"
+                         Color="{StaticResource SoftWhite}"/>
+
+        <SolidColorBrush x:Key="BorderBrush"
+                         Color="{StaticResource SoftBorder}"/>
+
+
+
+        <!-- BUTTON STYLES                        -->
+  
+
+        <Style x:Key="BaseButtonStyle"
+               TargetType="Button">
+
+            <Setter Property="FontFamily"
+                    Value="Segoe UI"/>
+
+            <Setter Property="FontSize"
+                    Value="13"/>
+
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+
+            <Setter Property="Foreground"
+                    Value="{DynamicResource TextBrush}"/>
+
+            <Setter Property="Padding"
+                    Value="16,10"/>
+
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Center"/>
+
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center"/>
+
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+
+                        <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10">
+
+                            <ContentPresenter
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Margin="{TemplateBinding Padding}"/>
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Opacity"
+                                        Value="0.85"/>
+                            </Trigger>
+
+                            <Trigger Property="IsPressed"
+                                     Value="True">
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Opacity"
+                                        Value="0.7"/>
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled"
+                                     Value="False">
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Opacity"
+                                        Value="0.45"/>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+
+
+        <!-- PRIMARY BUTTON -->
+        <Style x:Key="PrimaryButtonStyle"
+               TargetType="Button"
+               BasedOn="{StaticResource BaseButtonStyle}">
+
+            <Setter Property="Background"
+                    Value="{DynamicResource PrimaryBrush}"/>
+
+        </Style>
+
+
+        <!-- SECONDARY BUTTON -->
+        <Style x:Key="SecondaryButtonStyle"
+               TargetType="Button"
+               BasedOn="{StaticResource BaseButtonStyle}">
+
+            <Setter Property="Background"
+                    Value="{DynamicResource MelonBrush}"/>
+
+        </Style>
+
+
+        <!-- SIDEBAR BUTTON -->
+        <Style x:Key="SidebarButtonStyle"
+               TargetType="Button"
+               BasedOn="{StaticResource BaseButtonStyle}">
+
+            <Setter Property="Background"
+                    Value="Transparent"/>
+
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Left"/>
+
+            <Setter Property="Padding"
+                    Value="16,12"/>
+
+        </Style>
+
+
+        <!-- CARD STYLES                          -->
+
+        <Style x:Key="CardStyle"
+               TargetType="Border">
+
+            <Setter Property="Background"
+                    Value="{DynamicResource CardBrush}"/>
+
+            <Setter Property="CornerRadius"
+                    Value="14"/>
+
+            <Setter Property="Padding"
+                    Value="18"/>
+
+            <Setter Property="BorderBrush"
+                    Value="{DynamicResource BorderBrush}"/>
+
+            <Setter Property="BorderThickness"
+                    Value="1"/>
+
+        </Style>
+
+
+        <!-- TYPOGRAPHY                           -->
+
+        <!-- EDITORIAL HEADINGS -->
+        <Style x:Key="PageTitleStyle"
+               TargetType="TextBlock">
+
+            <Setter Property="FontFamily"
+                    Value="Georgia"/>
+
+            <Setter Property="FontSize"
+                    Value="28"/>
+
+            <Setter Property="FontWeight"
+                    Value="Bold"/>
+
+            <Setter Property="Foreground"
+                    Value="{DynamicResource TextBrush}"/>
+
+        </Style>
+
+
+        <!-- SECTION HEADINGS -->
+        <Style x:Key="SectionTitleStyle"
+               TargetType="TextBlock">
+
+            <Setter Property="FontFamily"
+                    Value="Georgia"/>
+
+            <Setter Property="FontSize"
+                    Value="19"/>
+
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+
+            <Setter Property="Foreground"
+                    Value="{DynamicResource TextBrush}"/>
+
+        </Style>
+
+
+        <!-- SECONDARY TEXT -->
+        <Style x:Key="MutedTextStyle"
+               TargetType="TextBlock">
+
+            <Setter Property="FontFamily"
+                    Value="Segoe UI"/>
+
+            <Setter Property="FontSize"
+                    Value="12"/>
+
+            <Setter Property="Foreground"
+                    Value="{DynamicResource MutedTextBrush}"/>
+
+        </Style>
+
+
+        <!-- INPUT STYLES                         -->
+
+        <Style x:Key="InputTextBoxStyle"
+               TargetType="TextBox">
+
+            <Setter Property="FontFamily"
+                    Value="Segoe UI"/>
+
+            <Setter Property="FontSize"
+                    Value="13"/>
+
+            <Setter Property="Foreground"
+                    Value="{DynamicResource TextBrush}"/>
+
+            <Setter Property="Background"
+                    Value="{DynamicResource CardBrush}"/>
+
+            <Setter Property="BorderBrush"
+                    Value="{DynamicResource BorderBrush}"/>
+
+            <Setter Property="BorderThickness"
+                    Value="1"/>
+
+            <Setter Property="Padding"
+                    Value="12,9"/>
+
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center"/>
+
+        </Style>
+
+    </Application.Resources>
+
+</Application>

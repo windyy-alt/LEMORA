@@ -1,0 +1,275 @@
+﻿<Window x:Class="LEMORA.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:views="clr-namespace:LEMORA.Views"
+        Title="Lemora - Your Personal Digital Wardrobe"
+        Width="1440" Height="900"
+        MinWidth="1100" MinHeight="700"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource BackgroundBrush}"
+        FontFamily="Segoe UI">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="230"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar -->
+        <Border Grid.Column="0" Background="#F8F7EE"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="0,0,1,0">
+            <Grid Margin="14,25,14,18">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="90"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                    <Border Width="40" Height="40"
+                            Background="{DynamicResource PrimaryBrush}"
+                            CornerRadius="10">
+                        <TextBlock Text="L" FontFamily="Georgia" FontSize="27"
+                                   FontWeight="Bold" Foreground="White"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
+                        <TextBlock Text="Lemora" FontFamily="Georgia"
+                                   FontWeight="Bold" FontSize="24"
+                                   Foreground="{DynamicResource TextBrush}"/>
+                        <TextBlock Text="Digital Wardrobe" FontSize="10"
+                                   Foreground="{DynamicResource MutedTextBrush}"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="ATELIER STUDIO" FontSize="10"
+                               FontWeight="Bold" Margin="14,0,0,15"
+                               Foreground="{DynamicResource MutedTextBrush}"/>
+
+                    <Button x:Name="DashboardButton" Content="Dashboard"
+                            Click="Dashboard_Click"
+                            Style="{StaticResource SidebarButtonStyle}"
+                            Background="{DynamicResource PrimaryBrush}"
+                            Margin="0,0,0,5"/>
+                    <Button x:Name="MyClosetButton" Content="My Closet"
+                            Click="MyCloset_Click"
+                            Style="{StaticResource SidebarButtonStyle}"
+                            Background="Transparent" Margin="0,0,0,5"/>
+                    <Button Content="Outfit Studio"
+                            Style="{StaticResource SidebarButtonStyle}"
+                            Background="Transparent" Margin="0,0,0,5"/>
+                    <Button Content="Outfit Planner"
+                            Style="{StaticResource SidebarButtonStyle}"
+                            Background="Transparent" Margin="0,0,0,5"/>
+                    <Button Content="Style Suggestions"
+                            Style="{StaticResource SidebarButtonStyle}"
+                            Background="Transparent" Margin="0,0,0,5"/>
+                    <Button Content="Wardrobe Insights"
+                            Style="{StaticResource SidebarButtonStyle}"
+                            Background="Transparent" Margin="0,0,0,5"/>
+                    <Button Content="Settings"
+                            Style="{StaticResource SidebarButtonStyle}"
+                            Background="Transparent"/>
+                </StackPanel>
+
+                <Border Grid.Row="2" Background="#EFF0E4"
+                        CornerRadius="10" Padding="12"
+                        VerticalAlignment="Bottom">
+                    <StackPanel>
+                        <TextBlock Text="My Personal Wardrobe" FontSize="12"
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextBrush}"/>
+                        <TextBlock Text="Local Collection" FontSize="11"
+                                   Margin="0,5,0,0"
+                                   Foreground="{DynamicResource MutedTextBrush}"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- Main area -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <Border Grid.Row="0" Background="#F8F7EE"
+                    BorderBrush="{DynamicResource BorderBrush}"
+                    BorderThickness="0,0,0,1">
+                <Grid Margin="30,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Width="310" Height="39" Background="White"
+                            CornerRadius="10" HorizontalAlignment="Left"
+                            VerticalAlignment="Center" Padding="14,0">
+                        <TextBlock Text="Search your wardrobe..."
+                                   Foreground="{DynamicResource MutedTextBrush}"
+                                   VerticalAlignment="Center" FontSize="12"/>
+                    </Border>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                        <Button Content="+ Add Clothing"
+                                Click="AddClothing_Click"
+                                Style="{StaticResource PrimaryButtonStyle}"
+                                Margin="0,0,10,0"/>
+                        <Button Content="Create Outfit"
+                                Style="{StaticResource SecondaryButtonStyle}"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Dashboard -->
+            <ScrollViewer x:Name="DashboardPanel" Grid.Row="1"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+                <StackPanel Margin="30,26,30,30">
+                    <TextBlock Text="YOUR WARDROBE, YOUR AURA"
+                               FontSize="10" FontWeight="Bold"
+                               Foreground="{DynamicResource PrimaryBrush}"/>
+                    <TextBlock x:Name="GreetingText"
+                               Style="{StaticResource PageTitleStyle}"
+                               Margin="0,8,0,5" TextWrapping="Wrap"/>
+                    <TextBlock Text="Your wardrobe, beautifully organized."
+                               Style="{StaticResource MutedTextStyle}"
+                               FontSize="13"/>
+
+                    <!-- Statistics -->
+                    <UniformGrid Columns="4" Margin="0,24,0,20">
+                        <Border Style="{StaticResource CardStyle}"
+                                Margin="0,0,10,0" MinHeight="140">
+                            <StackPanel>
+                                <TextBlock Text="TOTAL GARMENTS" FontSize="10"
+                                           FontWeight="Bold"
+                                           Foreground="{DynamicResource MutedTextBrush}"/>
+                                <TextBlock Text="0" FontFamily="Georgia" FontSize="38"
+                                           FontWeight="Bold" Margin="0,12,0,0"/>
+                                <TextBlock Text="items"
+                                           Foreground="{DynamicResource MutedTextBrush}"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource CardStyle}"
+                                Margin="0,0,10,0" MinHeight="140">
+                            <StackPanel>
+                                <TextBlock Text="SAVED OUTFITS" FontSize="10"
+                                           FontWeight="Bold"
+                                           Foreground="{DynamicResource MutedTextBrush}"/>
+                                <TextBlock Text="0" FontFamily="Georgia" FontSize="38"
+                                           FontWeight="Bold" Margin="0,12,0,0"/>
+                                <TextBlock Text="outfits"
+                                           Foreground="{DynamicResource MutedTextBrush}"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource CardStyle}"
+                                Margin="0,0,10,0" MinHeight="140">
+                            <StackPanel>
+                                <TextBlock Text="OUTFIT PLANNER" FontSize="10"
+                                           FontWeight="Bold"
+                                           Foreground="{DynamicResource MutedTextBrush}"/>
+                                <TextBlock Text="0" FontFamily="Georgia" FontSize="38"
+                                           FontWeight="Bold" Margin="0,12,0,0"/>
+                                <TextBlock Text="planned"
+                                           Foreground="{DynamicResource MutedTextBrush}"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource CardStyle}" MinHeight="140">
+                            <StackPanel>
+                                <TextBlock Text="CATEGORIES" FontSize="10"
+                                           FontWeight="Bold"
+                                           Foreground="{DynamicResource MutedTextBrush}"/>
+                                <TextBlock Text="0" FontFamily="Georgia" FontSize="38"
+                                           FontWeight="Bold" Margin="0,12,0,0"/>
+                                <TextBlock Text="categories"
+                                           Foreground="{DynamicResource MutedTextBrush}"/>
+                            </StackPanel>
+                        </Border>
+                    </UniformGrid>
+
+                    <!-- Outfit and recent items -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Style="{StaticResource CardStyle}" Margin="0,0,15,0">
+                            <StackPanel>
+                                <TextBlock Text="Today's Outfit"
+                                           Style="{StaticResource SectionTitleStyle}"/>
+                                <TextBlock Text="Your selected look for today"
+                                           Style="{StaticResource MutedTextStyle}"
+                                           Margin="0,5,0,16"/>
+                                <Border Height="150" Background="#F3F1E7"
+                                        CornerRadius="10" Padding="15">
+                                    <StackPanel VerticalAlignment="Center"
+                                                HorizontalAlignment="Center">
+                                        <TextBlock Text="No outfit scheduled for today"
+                                                   FontFamily="Georgia" FontSize="18"
+                                                   Foreground="{DynamicResource TextBrush}"
+                                                   HorizontalAlignment="Center"/>
+                                        <TextBlock Text="Your planned look will appear here."
+                                                   Style="{StaticResource MutedTextStyle}"
+                                                   HorizontalAlignment="Center"
+                                                   Margin="0,8,0,0"/>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Column="1" Style="{StaticResource CardStyle}">
+                            <StackPanel>
+                                <TextBlock Text="Recently Added"
+                                           Style="{StaticResource SectionTitleStyle}"/>
+                                <TextBlock Text="Latest wardrobe additions"
+                                           Style="{StaticResource MutedTextStyle}"
+                                           Margin="0,5,0,20"/>
+                                <Border Background="#F3F1E7" CornerRadius="10"
+                                        Padding="15" MinHeight="150">
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="No clothing items yet"
+                                                   FontWeight="SemiBold"
+                                                   FontSize="13"
+                                                   TextAlignment="Center"/>
+                                        <TextBlock Text="Add your first item in My Closet."
+                                                   Style="{StaticResource MutedTextStyle}"
+                                                   TextAlignment="Center"
+                                                   Margin="0,8,0,0"
+                                                   TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <!-- Distribution -->
+                    <Border Style="{StaticResource CardStyle}" Margin="0,20,0,0">
+                        <StackPanel>
+                            <TextBlock Text="Wardrobe Category Distribution"
+                                       Style="{StaticResource SectionTitleStyle}"/>
+                            <TextBlock Text="A quick overview of your clothing collection"
+                                       Style="{StaticResource MutedTextStyle}"
+                                       Margin="0,5,0,16"/>
+                            <Border Height="15" Background="#F3F1E7"
+                                    CornerRadius="6"/>
+                            <TextBlock Text="No wardrobe data available yet."
+                                       Style="{StaticResource MutedTextStyle}"
+                                       Margin="0,15,0,0"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- My Closet -->
+            <views:MyClosetView x:Name="ClosetPanel" Grid.Row="1"
+                                Visibility="Collapsed"/>
+        </Grid>
+    </Grid>
+</Window>
