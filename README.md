@@ -190,3 +190,37 @@ Pengujian dilakukan secara manual berdasarkan skenario di PRD:
 *   Karena menggunakan WPF, aplikasi ini eksklusif hanya untuk sistem operasi Windows.
 
 ---
+
+## 11. Dokumentasi Antarmuka (Screenshots)
+
+Berikut adalah dokumentasi visual dari antarmuka aplikasi Lemora yang menunjukkan implementasi *Rich UI* dan fitur-fitur yang telah berjalan.
+
+### 1. Dashboard
+Menampilkan sapaan personal, kartu metrik (Total Garments, Saved Outfits, Planned Outfits, Categories), jadwal outfit hari ini, item yang baru ditambahkan, serta grafik distribusi kategori.
+![Dashboard Lemora](screenshots/dashboard.png)
+
+### 2. My Closet
+Halaman katalog visual pakaian. Pengguna dapat menambahkan pakaian baru (dilengkapi *file picker* untuk foto), mencari, memfilter, serta mengedit dan menghapus item yang sudah ada.
+![My Closet Lemora](screenshots/my-closet.png)
+
+### 3. Outfit Studio
+Ruang kerja untuk menyusun outfit. Terdapat *Wardrobe Drawer* (kiri) untuk memilih item, *Outfit Lookbook* (tengah) sebagai *preview*, dan form konfigurasi (kanan) untuk menyimpan outfit.
+![Outfit Studio Lemora](screenshots/outfit-studio.png)
+
+### 4. Outfit Planner
+Kalender bulanan interaktif. Tanggal yang memiliki jadwal akan ditandai, dan pengguna bisa memilih outfit tersimpan beserta mengisi nama kegiatan pada form di samping kanan.
+![Outfit Planner Lemora](screenshots/outfit-planner.png)
+
+### 5. Style Suggestions
+Fitur rekomendasi gaya. Pengguna memilih target acara dan preferensi warna, lalu mesin akan menghasilkan maksimal 3 rekomendasi outfit (berisi potongan pakaian dan penjelasan *"Why This Look Works"*).
+![Style Suggestions Lemora](screenshots/style-suggestions.png)
+
+### 6. Wardrobe Insights
+Menampilkan analitik dari koleksi pakaian. Terdapat grafik *donut* distribusi kategori dan bar chart untuk persentase warna, serta ringkasan rasio Top-to-Bottom.
+![Wardrobe Insights Lemora](screenshots/wardrobe-insights.png)
+
+### 7. Settings & Themes
+Halaman untuk mengganti tema (Pastel Atelier / Charcoal Velvet). Juga menampilkan detail lokasi file database SQLite dan jumlah data yang tersimpan secara *real-time*.
+![Settings Lemora](screenshots/settings.png)
+
+---
