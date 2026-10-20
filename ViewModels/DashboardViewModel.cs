@@ -11,6 +11,7 @@ namespace LEMORA.ViewModels
     public class DashboardViewModel : ObservableObject
     {
         private readonly ClothingService _clothingService = new();
+        private readonly OutfitService _outfitService = new();
         private int _totalGarments;
         private int _totalCategories;
         private bool _isLoading;
@@ -32,8 +33,13 @@ namespace LEMORA.ViewModels
             private set => SetProperty(ref _totalCategories, value);
         }
 
-        // These modules will be connected when their database tables exist.
-        public int SavedOutfitsCount => 0;
+        private int _savedOutfitsCount;
+        public int SavedOutfitsCount
+        {
+            get => _savedOutfitsCount;
+            private set => SetProperty(ref _savedOutfitsCount, value);
+        }
+
         public int PlannedOutfitsCount => 0;
 
         public bool IsWardrobeEmpty => TotalGarments == 0;
@@ -100,6 +106,7 @@ namespace LEMORA.ViewModels
 
                 TotalGarments = items.Count;
                 TotalCategories = groups.Count;
+                SavedOutfitsCount = await _outfitService.GetCountAsync();
                 OnPropertyChanged(nameof(HasRecentItems));
                 OnPropertyChanged(nameof(HasCategories));
                 OnPropertyChanged(nameof(HasNoCategories));

@@ -72,6 +72,81 @@ namespace LEMORA.Migrations
 
                     b.ToTable("ClothingItems");
                 });
+
+            modelBuilder.Entity("LEMORA.Models.Outfit", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Occasion")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Outfits");
+                });
+
+            modelBuilder.Entity("LEMORA.Models.OutfitItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ClothingItemId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("OutfitId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Slot")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClothingItemId");
+
+                    b.HasIndex("OutfitId", "Slot")
+                        .IsUnique();
+
+                    b.ToTable("OutfitItems");
+                });
+
+            modelBuilder.Entity("LEMORA.Models.OutfitItem", b =>
+                {
+                    b.HasOne("LEMORA.Models.ClothingItem", "ClothingItem")
+                        .WithMany()
+                        .HasForeignKey("ClothingItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LEMORA.Models.Outfit", "Outfit")
+                        .WithMany("Items")
+                        .HasForeignKey("OutfitId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ClothingItem");
+
+                    b.Navigation("Outfit");
+                });
+
+            modelBuilder.Entity("LEMORA.Models.Outfit", b =>
+                {
+                    b.Navigation("Items");
+                });
 #pragma warning restore 612, 618
         }
     }

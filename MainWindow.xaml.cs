@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using LEMORA.ViewModels;
@@ -41,8 +42,10 @@ namespace LEMORA
             UpdateGreeting();
             DashboardPanel.Visibility = Visibility.Visible;
             ClosetPanel.Visibility = Visibility.Collapsed;
+            OutfitStudioPanel.Visibility = Visibility.Collapsed;
             DashboardButton.Background = (Brush)FindResource("PrimaryBrush");
             MyClosetButton.Background = Brushes.Transparent;
+            OutfitStudioButton.Background = Brushes.Transparent;
             await _dashboardViewModel.RefreshAsync();
         }
 
@@ -50,8 +53,32 @@ namespace LEMORA
         {
             DashboardPanel.Visibility = Visibility.Collapsed;
             ClosetPanel.Visibility = Visibility.Visible;
+            OutfitStudioPanel.Visibility = Visibility.Collapsed;
             DashboardButton.Background = Brushes.Transparent;
+            OutfitStudioButton.Background = Brushes.Transparent;
             MyClosetButton.Background = (Brush)FindResource("PrimaryBrush");
+        }
+
+        private async Task ShowOutfitStudioAsync()
+        {
+            DashboardPanel.Visibility = Visibility.Collapsed;
+            ClosetPanel.Visibility = Visibility.Collapsed;
+            OutfitStudioPanel.Visibility = Visibility.Visible;
+            DashboardButton.Background = Brushes.Transparent;
+            MyClosetButton.Background = Brushes.Transparent;
+            OutfitStudioButton.Background = (Brush)FindResource("PrimaryBrush");
+            await OutfitStudioPanel.RefreshAsync();
+        }
+
+        private async void OutfitStudio_Click(object sender, RoutedEventArgs e)
+        {
+            await ShowOutfitStudioAsync();
+        }
+
+        private async void CreateOutfit_Click(object sender, RoutedEventArgs e)
+        {
+            await ShowOutfitStudioAsync();
+            OutfitStudioPanel.BeginNewOutfit();
         }
 
         private void AddClothing_Click(object sender, RoutedEventArgs e)
