@@ -8,7 +8,7 @@
 > 
 > **Kelas:** PBKK D
 
-**Tautan Penting:**
+**Lampiran:**
 
 PRD: https://drive.google.com/file/d/1rx5r2mb2OVbJRIQzQqYsVd6YniQQGv9I/view?usp=drive_link
 
