@@ -149,8 +149,8 @@
                                                 Style="{StaticResource BaseButtonStyle}"
                                                 Command="{Binding DataContext.SelectUpcomingCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                 CommandParameter="{Binding}">
-                                            <Border Background="#F7F7EF" CornerRadius="9"
-                                                    BorderBrush="#E4E7DF" BorderThickness="1" Padding="10"
+                                            <Border Background="{DynamicResource ElevatedBrush}" CornerRadius="9"
+                                                    BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Padding="10"
                                                     MinHeight="100">
                                                 <StackPanel>
                                                     <TextBlock Text="{Binding Date, StringFormat={}{0:ddd MMM d}}"
@@ -182,7 +182,7 @@
                                    Style="{StaticResource SectionTitleStyle}"
                                    FontSize="19" Margin="0,7,0,15" TextWrapping="Wrap"/>
 
-                        <Border Background="#F5F3EA" CornerRadius="10" Padding="12"
+                        <Border Background="{DynamicResource PreviewBrush}" CornerRadius="10" Padding="12"
                                 Margin="0,0,0,16">
                             <StackPanel>
                                 <TextBlock Text="ASSIGNED OUTFIT" FontWeight="Bold" FontSize="10"
@@ -202,10 +202,10 @@
                                     </ItemsControl.ItemsPanel>
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <Border Background="White" CornerRadius="7"
+                                            <Border Background="{DynamicResource CardBrush}" CornerRadius="7"
                                                     Margin="0,0,7,7" Padding="5">
                                                 <StackPanel>
-                                                    <Border Height="78" Background="#EDECDB"
+                                                    <Border Height="78" Background="{DynamicResource SlotBrush}"
                                                             CornerRadius="6" ClipToBounds="True">
                                                         <Image Source="{Binding ClothingItem.ImagePath}"
                                                                Stretch="Uniform"/>
@@ -252,7 +252,7 @@
                                 Style="{StaticResource PrimaryButtonStyle}"
                                 Command="{Binding SavePlanCommand}"
                                 Margin="0,17,0,6"/>
-                        <Button Content="Remove from Calendar" Background="#E5A9A9"
+                        <Button Content="Remove from Calendar" Background="{DynamicResource MelonBrush}"
                                 Style="{StaticResource SecondaryButtonStyle}"
                                 Click="RemovePlan_Click"
                                 Visibility="{Binding HasSelectedPlan, Converter={StaticResource BoolToVisibility}}"/>

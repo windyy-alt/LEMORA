@@ -51,7 +51,7 @@
                         <ComboBox ItemsSource="{Binding ClothingCategories}"
                                   SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"
                                   Padding="7,5" Margin="0,0,0,10"/>
-                        <Border Background="#F3F1E7" CornerRadius="8" Padding="10"
+                        <Border Background="{DynamicResource SurfaceBrush}" CornerRadius="8" Padding="10"
                                 Visibility="{Binding IsWardrobeEmpty, Converter={StaticResource BoolToVisibility}}">
                             <TextBlock Text="Your wardrobe is empty. Add clothes in My Closet first."
                                        FontSize="12" TextWrapping="Wrap"/>
@@ -62,7 +62,7 @@
                             <ItemsControl ItemsSource="{Binding FilteredClothes}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Border Background="#F8F7F1" BorderBrush="#E4E7DF"
+                                        <Border Background="{DynamicResource ElevatedBrush}" BorderBrush="{DynamicResource BorderBrush}"
                                                 BorderThickness="1" CornerRadius="9"
                                                 Padding="6" Margin="0,0,0,7">
                                             <Grid>
@@ -70,7 +70,7 @@
                                                     <ColumnDefinition Width="52"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Border Width="48" Height="56" Background="#EDECDB"
+                                                <Border Width="48" Height="56" Background="{DynamicResource SlotBrush}"
                                                         CornerRadius="6" ClipToBounds="True">
                                                     <Image Source="{Binding ImagePath}" Stretch="UniformToFill"/>
                                                 </Border>
@@ -113,7 +113,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Background="#F6F5EF" BorderBrush="#E4E7DF"
+                                    <Border Background="{DynamicResource PreviewBrush}" BorderBrush="{DynamicResource BorderBrush}"
                                             BorderThickness="1" CornerRadius="10"
                                             Margin="0,0,8,8" Padding="8" Height="172">
                                         <Grid>
@@ -150,7 +150,7 @@
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                        <Border Background="#EDF4F0" CornerRadius="8" Padding="11"
+                        <Border Background="{DynamicResource SoftAccentBrush}" CornerRadius="8" Padding="11"
                                 Margin="0,7,0,0">
                             <TextBlock FontSize="12" Foreground="{DynamicResource TextBrush}">
                                 <Run Text="Selected pieces: "/>
@@ -210,7 +210,7 @@
                         <ItemsControl ItemsSource="{Binding SavedOutfits}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Background="#F6F5EF" BorderBrush="#E4E7DF"
+                                    <Border Background="{DynamicResource PreviewBrush}" BorderBrush="{DynamicResource BorderBrush}"
                                             BorderThickness="1" CornerRadius="8"
                                             Padding="9" Margin="0,0,0,8">
                                         <StackPanel>

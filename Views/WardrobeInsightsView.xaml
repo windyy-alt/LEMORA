@@ -30,11 +30,11 @@
             </Grid>
 
             <TextBlock Text="{Binding ErrorMessage, Mode=OneWay}"
-                       Foreground="#B2334A" FontSize="12"
+                       Foreground="{DynamicResource DangerBrush}" FontSize="12"
                        TextWrapping="Wrap" Margin="0,0,0,10"/>
 
-            <Border Background="#F7F5EA" CornerRadius="12" Padding="18"
-                    BorderBrush="#E5E4D9" BorderThickness="1"
+            <Border Background="{DynamicResource ElevatedBrush}" CornerRadius="12" Padding="18"
+                    BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1"
                     Margin="0,0,0,18"
                     Visibility="{Binding IsWardrobeEmpty, Converter={StaticResource BoolToVisibility}}">
                 <StackPanel>
@@ -184,7 +184,7 @@
                                                 <ColumnDefinition Width="110"/>
                                             </Grid.ColumnDefinitions>
                                             <Border Width="13" Height="13" CornerRadius="4"
-                                                    BorderBrush="#E8E7DE" BorderThickness="1"
+                                                    BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1"
                                                     Background="{Binding Swatch}"/>
                                             <TextBlock Grid.Column="1" Text="{Binding Name}"
                                                        Foreground="{DynamicResource TextBrush}"
@@ -195,7 +195,7 @@
                                         </Grid>
                                         <ProgressBar Minimum="0" Maximum="100" Height="11"
                                                      Value="{Binding Percentage}" Foreground="{Binding Swatch}"
-                                                     Background="#F0EEE6" BorderThickness="0"/>
+                                                     Background="{DynamicResource SurfaceBrush}" BorderThickness="0"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -235,7 +235,7 @@
                                                    FontSize="12" TextTrimming="CharacterEllipsis"/>
                                         <ProgressBar Grid.Column="1" Minimum="0" Maximum="100"
                                                      Height="12" VerticalAlignment="Center"
-                                                     Background="#F0EEE6" Foreground="{Binding Swatch}"
+                                                     Background="{DynamicResource SurfaceBrush}" Foreground="{Binding Swatch}"
                                                      BorderThickness="0" Value="{Binding Percentage}"/>
                                         <TextBlock Grid.Column="2" Text="{Binding Summary}" FontSize="10"
                                                    VerticalAlignment="Center" HorizontalAlignment="Right"
@@ -262,7 +262,7 @@
                         <TextBlock Text="{Binding LargestCategoryDetail}"
                                    Foreground="{DynamicResource MutedTextBrush}" FontSize="12"/>
 
-                        <Separator Background="#E5E4D9" Margin="0,16,0,16"/>
+                        <Separator Background="{DynamicResource BorderBrush}" Margin="0,16,0,16"/>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -282,7 +282,7 @@
                             </StackPanel>
                         </Grid>
 
-                        <Border Background="#F6F5EA" CornerRadius="10"
+                        <Border Background="{DynamicResource PreviewBrush}" CornerRadius="10"
                                 Padding="13" Margin="0,20,0,0">
                             <StackPanel>
                                 <TextBlock Text="COLLECTION NOTE" FontSize="10" FontWeight="Bold"

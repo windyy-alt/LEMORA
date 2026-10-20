@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -14,13 +15,7 @@ namespace LEMORA.ViewModels
 {
     public class PlannerDay : ObservableObject
     {
-        private static readonly Brush SelectedColor = new SolidColorBrush(Color.FromRgb(107, 177, 173));
-        private static readonly Brush TodayColor = new SolidColorBrush(Color.FromRgb(229, 169, 169));
-        private static readonly Brush ScheduledColor = new SolidColorBrush(Color.FromRgb(240, 240, 222));
-        private static readonly Brush RegularColor = new SolidColorBrush(Color.FromRgb(248, 247, 241));
-        private static readonly Brush OutsideColor = new SolidColorBrush(Color.FromRgb(246, 246, 243));
-        private static readonly Brush DarkText = new SolidColorBrush(Color.FromRgb(36, 50, 56));
-        private static readonly Brush FadedText = new SolidColorBrush(Color.FromRgb(166, 173, 170));
+        private static Brush ThemeBrush(string key) => (Brush)Application.Current.Resources[key];
 
         private bool _isSelected;
 
@@ -32,7 +27,7 @@ namespace LEMORA.ViewModels
         public string ActivityLabel => Plan?.Activity ?? "";
         public string TodayLabel => IsToday ? "TODAY" : "";
         public string PlanMarker => Plan is null ? "" : "●";
-        public Brush MarkerColor => new SolidColorBrush(Color.FromRgb(230, 116, 142));
+        public Brush MarkerColor => ThemeBrush("AccentBrush");
 
         public bool IsSelected
         {
@@ -47,12 +42,12 @@ namespace LEMORA.ViewModels
             }
         }
 
-        public Brush CellBackground => IsSelected ? SelectedColor :
-            IsToday ? TodayColor : Plan is not null ? ScheduledColor :
-            IsCurrentMonth ? RegularColor : OutsideColor;
+        public Brush CellBackground => IsSelected ? ThemeBrush("PrimaryBrush") :
+            IsToday ? ThemeBrush("MelonBrush") : Plan is not null ? ThemeBrush("WarmPanelBrush") :
+            IsCurrentMonth ? ThemeBrush("ElevatedBrush") : ThemeBrush("SurfaceBrush");
 
-        public Brush DayForeground => IsSelected ? Brushes.White :
-            IsCurrentMonth ? DarkText : FadedText;
+        public Brush DayForeground => IsCurrentMonth
+            ? ThemeBrush("TextBrush") : ThemeBrush("MutedTextBrush");
 
         public PlannerDay(DateTime date, bool isCurrentMonth, OutfitPlan? plan)
         {

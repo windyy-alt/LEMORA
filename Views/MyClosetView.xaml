@@ -85,7 +85,7 @@
 
                         <Border Width="220"
                                 Height="175"
-                                Background="#F3F1E7"
+                                Background="{DynamicResource SurfaceBrush}"
                                 BorderBrush="{DynamicResource BorderBrush}"
                                 BorderThickness="1"
                                 CornerRadius="12"
@@ -192,19 +192,19 @@
                     <DataTemplate>
                         <Border Width="210"
                                 Margin="0,0,14,14"
-                                Background="White"
+                                Background="{DynamicResource CardBrush}"
                                 CornerRadius="14"
                                 BorderBrush="{DynamicResource BorderBrush}"
                                 BorderThickness="1"
                                 ClipToBounds="True">
                             <StackPanel>
-                                <Border Height="165" Background="#F3F1E7">
+                                <Border Height="165" Background="{DynamicResource SurfaceBrush}">
                                     <Grid>
                                         <TextBlock Text="LEMORA"
                                                    FontFamily="Georgia"
                                                    FontSize="19"
                                                    FontStyle="Italic"
-                                                   Foreground="#A7BCBD"
+                                                   Foreground="{DynamicResource SecondaryBrush}"
                                                    HorizontalAlignment="Center"
                                                    VerticalAlignment="Center"/>
                                         <Image Source="{Binding ImagePath}"

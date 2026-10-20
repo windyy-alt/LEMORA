@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using LEMORA.ViewModels;
+using LEMORA.Services;
 
 namespace LEMORA
 {
@@ -13,6 +14,7 @@ namespace LEMORA
         public MainWindow()
         {
             InitializeComponent();
+            ThemeService.Initialize();
             DashboardPanel.DataContext = _dashboardViewModel;
             UpdateGreeting();
             Loaded += MainWindow_Loaded;
@@ -45,6 +47,7 @@ namespace LEMORA
             OutfitPlannerPanel.Visibility = Visibility.Collapsed;
             StyleSuggestionsPanel.Visibility = Visibility.Collapsed;
             WardrobeInsightsPanel.Visibility = Visibility.Collapsed;
+            SettingsPanel.Visibility = Visibility.Collapsed;
 
             DashboardButton.Background = Brushes.Transparent;
             MyClosetButton.Background = Brushes.Transparent;
@@ -52,6 +55,7 @@ namespace LEMORA
             OutfitPlannerButton.Background = Brushes.Transparent;
             StyleSuggestionsButton.Background = Brushes.Transparent;
             WardrobeInsightsButton.Background = Brushes.Transparent;
+            SettingsButton.Background = Brushes.Transparent;
 
             panel.Visibility = Visibility.Visible;
         }
@@ -107,6 +111,13 @@ namespace LEMORA
             ShowPage(WardrobeInsightsPanel);
             WardrobeInsightsButton.Background = (Brush)FindResource("PrimaryBrush");
             await WardrobeInsightsPanel.RefreshAsync();
+        }
+
+        private async void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            ShowPage(SettingsPanel);
+            SettingsButton.Background = (Brush)FindResource("PrimaryBrush");
+            await SettingsPanel.RefreshAsync();
         }
 
         private void AddClothing_Click(object sender, RoutedEventArgs e)
