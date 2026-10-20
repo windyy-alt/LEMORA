@@ -70,7 +70,8 @@
                             Click="StyleSuggestions_Click"
                             Style="{StaticResource SidebarButtonStyle}"
                             Background="Transparent" Margin="0,0,0,5"/>
-                    <Button Content="Wardrobe Insights"
+                    <Button x:Name="WardrobeInsightsButton" Content="Wardrobe Insights"
+                            Click="WardrobeInsights_Click"
                             Style="{StaticResource SidebarButtonStyle}"
                             Background="Transparent" Margin="0,0,0,5"/>
                     <Button Content="Settings"
@@ -369,6 +370,8 @@
                                      Visibility="Collapsed"/>
             <views:StyleSuggestionsView x:Name="StyleSuggestionsPanel" Grid.Row="1"
                                         Visibility="Collapsed"/>
+            <views:WardrobeInsightsView x:Name="WardrobeInsightsPanel" Grid.Row="1"
+                                       Visibility="Collapsed"/>
         </Grid>
     </Grid>
 </Window>

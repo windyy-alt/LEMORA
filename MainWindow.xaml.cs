@@ -44,12 +44,14 @@ namespace LEMORA
             OutfitStudioPanel.Visibility = Visibility.Collapsed;
             OutfitPlannerPanel.Visibility = Visibility.Collapsed;
             StyleSuggestionsPanel.Visibility = Visibility.Collapsed;
+            WardrobeInsightsPanel.Visibility = Visibility.Collapsed;
 
             DashboardButton.Background = Brushes.Transparent;
             MyClosetButton.Background = Brushes.Transparent;
             OutfitStudioButton.Background = Brushes.Transparent;
             OutfitPlannerButton.Background = Brushes.Transparent;
             StyleSuggestionsButton.Background = Brushes.Transparent;
+            WardrobeInsightsButton.Background = Brushes.Transparent;
 
             panel.Visibility = Visibility.Visible;
         }
@@ -98,6 +100,13 @@ namespace LEMORA
             ShowPage(StyleSuggestionsPanel);
             StyleSuggestionsButton.Background = (Brush)FindResource("PrimaryBrush");
             await StyleSuggestionsPanel.RefreshAsync();
+        }
+
+        private async void WardrobeInsights_Click(object sender, RoutedEventArgs e)
+        {
+            ShowPage(WardrobeInsightsPanel);
+            WardrobeInsightsButton.Background = (Brush)FindResource("PrimaryBrush");
+            await WardrobeInsightsPanel.RefreshAsync();
         }
 
         private void AddClothing_Click(object sender, RoutedEventArgs e)
