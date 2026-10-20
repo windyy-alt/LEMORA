@@ -9,8 +9,11 @@
 > **Kelas:** PBKK D
 
 **Tautan Penting:**
+
 PRD: https://drive.google.com/file/d/1rx5r2mb2OVbJRIQzQqYsVd6YniQQGv9I/view?usp=drive_link
+
 Source Code: https://github.com/windyy-alt/LEMORA/tree/master
+
 Video Demo:
 
 ---
