@@ -1,6 +1,7 @@
-﻿<UserControl x:Class="LEMORA.Views.MyClosetView"
+<UserControl x:Class="LEMORA.Views.MyClosetView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="{DynamicResource BackgroundBrush}">
 
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
@@ -8,7 +9,6 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto"
                   HorizontalScrollBarVisibility="Disabled">
-
         <StackPanel Margin="30,26,30,30">
 
             <!-- Header -->
@@ -19,12 +19,15 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel>
+                    <TextBlock Text="MY DIGITAL WARDROBE"
+                               FontSize="10"
+                               FontWeight="Bold"
+                               Foreground="{DynamicResource PrimaryBrush}"/>
                     <TextBlock Text="My Closet"
-                               Style="{StaticResource PageTitleStyle}"/>
-
-                    <TextBlock Margin="0,6,0,0"
-                               Foreground="{DynamicResource MutedTextBrush}"
-                               FontSize="13">
+                               Style="{StaticResource PageTitleStyle}"
+                               Margin="0,6,0,4"/>
+                    <TextBlock FontSize="13"
+                               Foreground="{DynamicResource MutedTextBrush}">
                         <Run Text="{Binding TotalCount, Mode=OneWay}"/>
                         <Run Text=" pieces in your personal collection"/>
                     </TextBlock>
@@ -37,26 +40,22 @@
                         VerticalAlignment="Center"/>
             </Grid>
 
-            <!-- Search and Filter -->
-            <Border Style="{StaticResource CardStyle}"
-                    Margin="0,24,0,20">
-
+            <!-- Search and filter -->
+            <Border Style="{StaticResource CardStyle}" Margin="0,24,0,20">
                 <StackPanel>
                     <TextBlock Text="Explore Your Wardrobe"
                                Style="{StaticResource SectionTitleStyle}"
                                Margin="0,0,0,12"/>
-
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBox Grid.Column="0"
-                                 Style="{StaticResource InputTextBoxStyle}"
+                        <TextBox Style="{StaticResource InputTextBoxStyle}"
                                  Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                                 Margin="0,0,12,0"
-                                 ToolTip="Search clothing by name, brand, or color"/>
+                                 ToolTip="Search by name, brand, or color"
+                                 Margin="0,0,12,0"/>
 
                         <ComboBox Grid.Column="1"
                                   ItemsSource="{Binding Categories}"
@@ -67,18 +66,45 @@
                 </StackPanel>
             </Border>
 
-            <!-- Add Clothing Form -->
+            <!-- Add and edit form -->
             <Border Style="{StaticResource CardStyle}"
                     Margin="0,0,0,20"
                     Visibility="{Binding IsFormOpen, Converter={StaticResource BoolToVisibility}}">
-
                 <StackPanel>
-                    <TextBlock Text="Add New Clothing"
+                    <TextBlock Text="{Binding FormTitle}"
                                Style="{StaticResource SectionTitleStyle}"/>
-
-                    <TextBlock Text="Add a new piece to your digital wardrobe."
+                    <TextBlock Text="Add or update an item in your digital wardrobe."
                                Style="{StaticResource MutedTextStyle}"
                                Margin="0,5,0,18"/>
+
+                    <StackPanel Margin="0,0,0,20">
+                        <TextBlock Text="Clothing Photo"
+                                   FontWeight="SemiBold"
+                                   FontSize="13"
+                                   Margin="0,0,0,8"/>
+
+                        <Border Width="220"
+                                Height="175"
+                                Background="#F3F1E7"
+                                BorderBrush="{DynamicResource BorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="12"
+                                HorizontalAlignment="Left"
+                                ClipToBounds="True">
+                            <Image Source="{Binding NewImagePath}"
+                                   Stretch="Uniform"
+                                   Margin="8"/>
+                        </Border>
+
+                        <Button Content="+ Browse Photo"
+                                Click="BrowsePhoto_Click"
+                                Style="{StaticResource SecondaryButtonStyle}"
+                                HorizontalAlignment="Left"
+                                Margin="0,12,0,0"/>
+                        <TextBlock Text="JPG, PNG, or BMP (max. 10 MB)"
+                                   Style="{StaticResource MutedTextStyle}"
+                                   Margin="0,8,0,0"/>
+                    </StackPanel>
 
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -91,7 +117,6 @@
                             <TextBlock Text="Item Name *"
                                        FontWeight="SemiBold"
                                        Margin="0,0,0,7"/>
-
                             <TextBox Style="{StaticResource InputTextBoxStyle}"
                                      Text="{Binding NewName, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
@@ -100,23 +125,15 @@
                             <TextBlock Text="Category"
                                        FontWeight="SemiBold"
                                        Margin="0,0,0,7"/>
-
                             <ComboBox Padding="9,7"
-                                      SelectedItem="{Binding NewCategory}">
-                                <ComboBoxItem Content="Tops"/>
-                                <ComboBoxItem Content="Bottoms"/>
-                                <ComboBoxItem Content="Outerwear"/>
-                                <ComboBoxItem Content="Dresses"/>
-                                <ComboBoxItem Content="Shoes"/>
-                                <ComboBoxItem Content="Accessories"/>
-                            </ComboBox>
+                                      ItemsSource="{Binding ClothingCategories}"
+                                      SelectedItem="{Binding NewCategory, Mode=TwoWay}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Column="2">
                             <TextBlock Text="Color"
                                        FontWeight="SemiBold"
                                        Margin="0,0,0,7"/>
-
                             <TextBox Style="{StaticResource InputTextBoxStyle}"
                                      Text="{Binding NewColor, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
@@ -125,13 +142,11 @@
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Right"
                                 Margin="0,20,0,0">
-
                         <Button Content="Cancel"
                                 Command="{Binding CancelFormCommand}"
                                 Style="{StaticResource SecondaryButtonStyle}"
                                 Margin="0,0,10,0"/>
-
-                        <Button Content="Save Clothing"
+                        <Button Content="{Binding SaveButtonLabel}"
                                 Command="{Binding SaveCommand}"
                                 Style="{StaticResource PrimaryButtonStyle}"/>
                     </StackPanel>
@@ -141,28 +156,24 @@
             <TextBlock Text="{Binding Feedback}"
                        Foreground="{DynamicResource PrimaryBrush}"
                        FontSize="12"
+                       TextWrapping="Wrap"
                        Margin="0,0,0,12"/>
 
-            <!-- Empty State -->
+            <!-- Empty state -->
             <Border Style="{StaticResource CardStyle}"
                     MinHeight="240"
-                    Visibility="{Binding IsEmpty, Converter={StaticResource BoolToVisibility}}">
-
-                <StackPanel HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
-
+                    Visibility="{Binding IsEmpty, Mode=OneWay, Converter={StaticResource BoolToVisibility}}">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock Text="✦"
                                FontSize="38"
                                Foreground="{DynamicResource PrimaryBrush}"
                                HorizontalAlignment="Center"/>
-
                     <TextBlock Text="Your wardrobe is waiting!"
                                FontFamily="Georgia"
                                FontSize="22"
                                FontWeight="Bold"
                                HorizontalAlignment="Center"
                                Margin="0,12,0,6"/>
-
                     <TextBlock Text="Add your first clothing item or adjust your filters."
                                FontSize="13"
                                Foreground="{DynamicResource MutedTextBrush}"
@@ -170,14 +181,13 @@
                 </StackPanel>
             </Border>
 
-            <!-- Clothing Cards -->
+            <!-- Clothing cards -->
             <ItemsControl ItemsSource="{Binding FilteredItems}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
-
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border Width="210"
@@ -187,11 +197,8 @@
                                 BorderBrush="{DynamicResource BorderBrush}"
                                 BorderThickness="1"
                                 ClipToBounds="True">
-
                             <StackPanel>
-                                <Border Height="165"
-                                        Background="#F3F1E7">
-
+                                <Border Height="165" Background="#F3F1E7">
                                     <Grid>
                                         <TextBlock Text="LEMORA"
                                                    FontFamily="Georgia"
@@ -200,7 +207,6 @@
                                                    Foreground="#A7BCBD"
                                                    HorizontalAlignment="Center"
                                                    VerticalAlignment="Center"/>
-
                                         <Image Source="{Binding ImagePath}"
                                                Stretch="UniformToFill"/>
                                     </Grid>
@@ -211,23 +217,41 @@
                                                Foreground="{DynamicResource PrimaryBrush}"
                                                FontSize="10"
                                                FontWeight="Bold"/>
-
                                     <TextBlock Text="{Binding Name}"
                                                FontFamily="Georgia"
                                                FontSize="17"
                                                FontWeight="SemiBold"
                                                TextTrimming="CharacterEllipsis"
                                                Margin="0,7,0,5"/>
-
                                     <TextBlock Text="{Binding ColorName}"
                                                Style="{StaticResource MutedTextStyle}"/>
+
+                                    <Grid Margin="0,12,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Button Content="Edit"
+                                                Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                                CommandParameter="{Binding}"
+                                                Style="{StaticResource PrimaryButtonStyle}"
+                                                Padding="9,6"
+                                                Margin="0,0,5,0"/>
+
+                                        <Button Grid.Column="1"
+                                                Content="Delete"
+                                                Click="DeleteClothing_Click"
+                                                Style="{StaticResource SecondaryButtonStyle}"
+                                                Padding="9,6"
+                                                Margin="5,0,0,0"/>
+                                    </Grid>
                                 </StackPanel>
                             </StackPanel>
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-
         </StackPanel>
     </ScrollViewer>
 </UserControl>

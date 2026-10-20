@@ -1,15 +1,26 @@
-﻿using System;
+using System;
 using System.Windows;
 using System.Windows.Media;
+using LEMORA.ViewModels;
 
 namespace LEMORA
 {
     public partial class MainWindow : Window
     {
+        private readonly DashboardViewModel _dashboardViewModel = new();
+
         public MainWindow()
         {
             InitializeComponent();
+            DashboardPanel.DataContext = _dashboardViewModel;
             UpdateGreeting();
+            Loaded += MainWindow_Loaded;
+        }
+
+        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            Loaded -= MainWindow_Loaded;
+            await _dashboardViewModel.RefreshAsync();
         }
 
         private void UpdateGreeting()
@@ -25,13 +36,14 @@ namespace LEMORA
             GreetingText.Text = $"{greeting}, welcome to Lemora!";
         }
 
-        private void Dashboard_Click(object sender, RoutedEventArgs e)
+        private async void Dashboard_Click(object sender, RoutedEventArgs e)
         {
             UpdateGreeting();
             DashboardPanel.Visibility = Visibility.Visible;
             ClosetPanel.Visibility = Visibility.Collapsed;
             DashboardButton.Background = (Brush)FindResource("PrimaryBrush");
             MyClosetButton.Background = Brushes.Transparent;
+            await _dashboardViewModel.RefreshAsync();
         }
 
         private void MyCloset_Click(object sender, RoutedEventArgs e)
