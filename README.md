@@ -14,7 +14,7 @@ PRD: https://drive.google.com/file/d/1rx5r2mb2OVbJRIQzQqYsVd6YniQQGv9I/view?usp=
 
 Source Code: https://github.com/windyy-alt/LEMORA/tree/master
 
-Video Demo:
+Video Demo: https://drive.google.com/file/d/14h7OrCyJBFKCBywdnfCt7ySsJ60oO9bH/view?usp=sharing
 
 ---
 
@@ -200,30 +200,30 @@ Berikut adalah dokumentasi visual dari antarmuka aplikasi Lemora yang menunjukka
 
 ### 1. Dashboard
 Menampilkan sapaan personal, kartu metrik (Total Garments, Saved Outfits, Planned Outfits, Categories), jadwal outfit hari ini, item yang baru ditambahkan, serta grafik distribusi kategori.
-![Dashboard Lemora](screenshots/dashboard.png)
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/ded43461-9893-4c95-8493-a32f0fc50f81" />
 
 ### 2. My Closet
 Halaman katalog visual pakaian. Pengguna dapat menambahkan pakaian baru (dilengkapi *file picker* untuk foto), mencari, memfilter, serta mengedit dan menghapus item yang sudah ada.
-![My Closet Lemora](screenshots/my-closet.png)
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/477e3ebc-05cb-4ea8-8231-dec8f1e149d2" />
 
 ### 3. Outfit Studio
 Ruang kerja untuk menyusun outfit. Terdapat *Wardrobe Drawer* (kiri) untuk memilih item, *Outfit Lookbook* (tengah) sebagai *preview*, dan form konfigurasi (kanan) untuk menyimpan outfit.
-![Outfit Studio Lemora](screenshots/outfit-studio.png)
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/05b8f474-a5f2-40c3-96fd-30e0c30b72c8" />
 
 ### 4. Outfit Planner
 Kalender bulanan interaktif. Tanggal yang memiliki jadwal akan ditandai, dan pengguna bisa memilih outfit tersimpan beserta mengisi nama kegiatan pada form di samping kanan.
-![Outfit Planner Lemora](screenshots/outfit-planner.png)
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/f5e4161a-4322-4de7-96fd-3dc3ddd5b4d6" />
 
 ### 5. Style Suggestions
 Fitur rekomendasi gaya. Pengguna memilih target acara dan preferensi warna, lalu mesin akan menghasilkan maksimal 3 rekomendasi outfit (berisi potongan pakaian dan penjelasan *"Why This Look Works"*).
-![Style Suggestions Lemora](screenshots/style-suggestions.png)
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/b10fd735-1472-49af-889d-199bad5f6ee2" />
 
 ### 6. Wardrobe Insights
 Menampilkan analitik dari koleksi pakaian. Terdapat grafik *donut* distribusi kategori dan bar chart untuk persentase warna, serta ringkasan rasio Top-to-Bottom.
-![Wardrobe Insights Lemora](screenshots/wardrobe-insights.png)
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/3f6fbc2f-8e2d-44da-aea2-9cb10e3ccdc0" />
 
 ### 7. Settings & Themes
 Halaman untuk mengganti tema (Pastel Atelier / Charcoal Velvet). Juga menampilkan detail lokasi file database SQLite dan jumlah data yang tersimpan secara *real-time*.
-![Settings Lemora](screenshots/settings.png)
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/ba7a445d-e628-45b0-9d89-7e8c65a6325c" />
 
 ---
